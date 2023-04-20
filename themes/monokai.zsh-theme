@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[yellow]%}["
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{white}["
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$fg[white]%}]%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN="]%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}*%F{white}] "
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{white}] "
 
 ZSH_THEME_SVN_PROMPT_PREFIX="$ZSH_THEME_GIT_PROMPT_PREFIX"
 ZSH_THEME_SVN_PROMPT_SUFFIX="$ZSH_THEME_GIT_PROMPT_SUFFIX"
@@ -15,6 +15,9 @@ ZSH_THEME_HG_PROMPT_SUFFIX="$ZSH_THEME_GIT_PROMPT_SUFFIX"
 ZSH_THEME_HG_PROMPT_DIRTY="$ZSH_THEME_GIT_PROMPT_DIRTY"
 ZSH_THEME_HG_PROMPT_CLEAN="$ZSH_THEME_GIT_PROMPT_CLEAN"
 
+ZSH_THEME_VIRTUALENV_PREFIX="%F{white}["
+ZSH_THEME_VIRTUALENV_SUFFIX="] "
+
 vcs_status() {
   if (( ${+functions[in_svn]} )) && in_svn; then
     svn_prompt_info
@@ -25,4 +28,4 @@ vcs_status() {
   fi
 }
 
-PROMPT='%{$fg[blue]%}%2~ $(vcs_status)%{$fg[red]%}❯%{$reset_color%}%b '
+PROMPT='$(virtualenv_prompt_info)%F{magenta}%2~ $(vcs_status)%F{red}❯%F%{$reset_color%} '
