@@ -19,13 +19,7 @@ ZSH_THEME_VIRTUALENV_PREFIX="%F{white}["
 ZSH_THEME_VIRTUALENV_SUFFIX="] "
 
 vcs_status() {
-  if (( ${+functions[in_svn]} )) && in_svn; then
-    svn_prompt_info
-  elif (( ${+functions[in_hg]} )) && in_hg; then
-    hg_prompt_info
-  else
     git_prompt_info
-  fi
 }
 
 PROMPT='$(virtualenv_prompt_info)%F{magenta}%2~ $(vcs_status)%F{red}❯%F%{$reset_color%} '
